@@ -48,5 +48,4 @@ def tokenize_models(regenerate = false)
     end
   end
   puts "Elapsed time " + (Time.now - start).seconds.to_s + " seconds"
-
 end
