@@ -10,11 +10,11 @@ module ActsAsTokenizable
 
   #makes self.<token_field_name>=self.to_token
   def tokenize
-    self.send("#{self.class.token_field_name}=", self.to_token)
+    send("#{class.token_field_name}=", to_token)
   end
 
   def tokenize!
-    self.update_column("#{self.class.token_field_name}", self.to_token)
+    update_column("#{class.token_field_name}", to_token)
   end
 
   module ClassMethods
