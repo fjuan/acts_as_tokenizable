@@ -12,7 +12,7 @@ end
 
 def array_of_active_record_models
   Rails.application.eager_load!
-  models_with_token = ActiveRecord::Base.descendants.select { |m| m.respond_to? :tokenized_by }
+  ActiveRecord::Base.descendants.select { |m| m.respond_to? :tokenized_by }
 end
 
 def tokenize_records(records)
@@ -24,7 +24,7 @@ def tokenize_records(records)
     record.tokenize!
     count += 1
     print "\r#{count}/#{total_count}"
-    GC.start if count % 1000 == 0 #launch garbage collection each 1000 registers
+    GC.start if count % 1000 == 0 # launch garbage collection each 1000 registers
   end
   puts ''
 end
@@ -35,12 +35,12 @@ def tokenize_models(regenerate = false)
   puts '++++++++++++++++++++++++++++++++'
 
   array_of_active_record_models.each do |model|
-  puts "Generating new tokens for #{model.name.pluralize}"
+    puts "Generating new tokens for #{model.name.pluralize}"
 
-  conditions = "#{model.token_field_name} IS NULL OR #{model.token_field_name} = ''" unless regenerate
+    conditions = "#{model.token_field_name} IS NULL OR #{model.token_field_name} = ''" unless regenerate
 
-  records_without_token = model.all(:conditions => conditions)
-    if records_without_token.size > 0
+    records_without_token = model.all(:conditions => conditions)
+    if !records_without_token.empty?
       tokenize_records(records_without_token)
     else
       puts 'There are no records without token'
