@@ -5,7 +5,7 @@ module ActsAsTokenizable
   # default to_token method. needs to have a "name" property on the object.
   # override for more complex token generation
   def to_token
-    raise NoMethodError.new("You must redefine to_token in your model. Example: self.name.to_token()")
+    raise NoMethodError, 'You must redefine to_token in your model. Example: self.name.to_token()'
   end
 
   #makes self.<token_field_name>=self.to_token

@@ -1,10 +1,10 @@
 namespace :tokens do
-  desc "Generates the token for objects without tokens."
+  desc 'Generates the token for objects without tokens.'
   task :generate => :environment do
     tokenize_models
   end
 
-  desc "Re-builds the token for all objects."
+  desc 'Re-builds the token for all objects.'
   task :regenerate => :environment do
     tokenize_models(true)
   end
@@ -26,13 +26,13 @@ def tokenize_records(records)
     print "\r#{count}/#{total_count}"
     GC.start if count % 1000 == 0 #launch garbage collection each 1000 registers
   end
-  puts ""
+  puts ''
 end
 
 def tokenize_models(regenerate = false)
   start = Time.now
-  puts "Start token generation"
-  puts "++++++++++++++++++++++++++++++++"
+  puts 'Start token generation'
+  puts '++++++++++++++++++++++++++++++++'
 
   array_of_active_record_models.each do |model|
   puts "Generating new tokens for #{model.name.pluralize}"
@@ -43,9 +43,9 @@ def tokenize_models(regenerate = false)
     if records_without_token.size > 0
       tokenize_records(records_without_token)
     else
-      puts "There are no records without token"
-      puts "++++++++++++++++++++++++++++++++"
+      puts 'There are no records without token'
+      puts '++++++++++++++++++++++++++++++++'
     end
   end
-  puts "Elapsed time " + (Time.now - start).seconds.to_s + " seconds"
+  puts "Elapsed time #{(Time.now - start).seconds.to_s} seconds"
 end
