@@ -22,7 +22,7 @@ def tokenize_records(records)
 
   records.each do |record|
     record.tokenize     #this generates tokens
-    record.save false   #this saves without checking validations
+    record.save
     count += 1
     print "\r#{count}/#{total_count}"
     GC.start if count % 1000 == 0 #launch garbage collection each 1000 registers
