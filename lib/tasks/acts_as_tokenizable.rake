@@ -30,7 +30,7 @@ def tokenize_records(records)
 end
 
 def tokenize_models(regenerate = false)
-  start = Time.now
+  start = Time.current
   puts 'Start token generation'
   puts '++++++++++++++++++++++++++++++++'
 
@@ -47,5 +47,5 @@ def tokenize_models(regenerate = false)
       puts '++++++++++++++++++++++++++++++++'
     end
   end
-  puts "Elapsed time #{(Time.now - start).seconds} seconds"
+  puts "Elapsed time #{(Time.current - start).seconds} seconds"
 end
