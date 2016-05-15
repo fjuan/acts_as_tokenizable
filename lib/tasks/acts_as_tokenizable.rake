@@ -11,16 +11,15 @@ namespace :tokens do
 end
 
 def array_of_active_record_models
-  Dir.glob(RAILS_ROOT + '/app/models/*.rb').each { |file| require file }
- 
-  models_with_token = ActiveRecord::Base.send(:subclasses).select{|m| m.respond_to?(:tokenized_by)}
+  Rails.application.eager_load!
+  models_with_token = ActiveRecord::Base.descendants.select { |m| m.respond_to? :tokenized_by }
 end
- 
+
 def tokenize_records(records)
   total_count = records.size
-  
+
   count = 0
-  
+
   records.each do |record|
     record.tokenize     #this generates tokens
     record.save false   #this saves without checking validations
@@ -30,19 +29,19 @@ def tokenize_records(records)
   end
   puts ""
 end
- 
+
 def tokenize_models(regenerate = false)
   start = Time.now
   puts "Start token generation"
   puts "++++++++++++++++++++++++++++++++"
-  
+
   array_of_active_record_models.each do |model|
   puts "Generating new tokens for #{model.name.pluralize}"
-  
+
   conditions = "#{model.token_field_name} IS NULL OR #{model.token_field_name} = ''" unless regenerate
- 
+
   records_without_token = model.all(:conditions => conditions)
-    if records_without_token.size > 0 
+    if records_without_token.size > 0
       tokenize_records(records_without_token)
     else
       puts "There are no records without token"
@@ -50,5 +49,5 @@ def tokenize_models(regenerate = false)
     end
   end
   puts "Elapsed time " + (Time.now - start).seconds.to_s + " seconds"
-  
+
 end
