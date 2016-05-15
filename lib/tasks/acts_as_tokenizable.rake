@@ -47,5 +47,5 @@ def tokenize_models(regenerate = false)
       puts '++++++++++++++++++++++++++++++++'
     end
   end
-  puts "Elapsed time #{(Time.now - start).seconds.to_s} seconds"
+  puts "Elapsed time #{(Time.now - start).seconds} seconds"
 end
