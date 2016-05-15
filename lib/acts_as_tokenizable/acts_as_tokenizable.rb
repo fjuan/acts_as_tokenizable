@@ -1,20 +1,19 @@
 require 'acts_as_tokenizable/string_utils'
 
 module ActsAsTokenizable
-
   # default to_token method. needs to have a "name" property on the object.
   # override for more complex token generation
   def to_token
     raise NoMethodError, 'You must redefine to_token in your model. Example: self.name.to_token()'
   end
 
-  #makes self.<token_field_name>=self.to_token
+  # makes self.<token_field_name>=self.to_token
   def tokenize
-    send("#{class.token_field_name}=", to_token)
+    send("#{self.class.token_field_name}=", to_token)
   end
 
   def tokenize!
-    update_column("#{class.token_field_name}", to_token)
+    update_column("#{self.class.token_field_name}", to_token)
   end
 
   module ClassMethods
@@ -37,9 +36,9 @@ module ActsAsTokenizable
         search_strings = []
         search_values = []
         StringUtils.words(prepare_search_token(search_token)).each do |w|
-          if w[0,1] == '-'
+          if w[0, 1] == '-'
             search_strings.push("#{table_name}.#{token_field_name} NOT LIKE ?")
-            search_values.push("%#{w[1,w.length]}%")
+            search_values.push("%#{w[1, w.length]}%")
           else
             search_strings.push("#{table_name}.#{token_field_name} LIKE ?")
             search_values.push("%#{w}%")
