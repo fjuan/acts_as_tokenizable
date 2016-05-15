@@ -48,7 +48,7 @@ module ActsAsTokenizable
       # to_slug and normalize are provided by the 'babosa' gem
       str = str.to_slug.normalize.strip.downcase.gsub(/[^\w|-]/, '') # remove all non-alphanumeric but hyphen (-)
       str = str.squeeze unless numeric?(str) # remove duplicates, except on pure numbers
-      return str[0..(max_length - 1)]
+      str[0..(max_length - 1)]
     end
 
     # tokenizes each word individually, and joins the word with the separator char.
