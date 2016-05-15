@@ -13,6 +13,10 @@ module ActsAsTokenizable
     self.send("#{self.class.token_field_name}=", self.to_token)
   end
 
+  def tokenize!
+    self.update_column("#{self.class.token_field_name}", self.to_token)
+  end
+
   module ClassMethods
     attr_accessor :token_field_name
 
