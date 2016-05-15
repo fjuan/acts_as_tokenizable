@@ -13,7 +13,7 @@ module ActsAsTokenizable
   end
 
   def tokenize!
-    update_column("#{self.class.token_field_name}", to_token)
+    update_column(self.class.token_field_name, to_token)
   end
 
   module ClassMethods
