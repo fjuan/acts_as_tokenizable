@@ -24,7 +24,8 @@ def tokenize_records(records)
     record.tokenize!
     count += 1
     print "\r#{count}/#{total_count}"
-    GC.start if count % 1000 == 0 # launch garbage collection each 1000 registers
+    # launch garbage collection each 1000 registers
+    GC.start if count % 1000 == 0
   end
   puts ''
 end
@@ -36,10 +37,10 @@ def tokenize_models(regenerate = false)
 
   array_of_active_record_models.each do |model|
     puts "Generating new tokens for #{model.name.pluralize}"
+    field_name = model.token_field_name
+    sql_conds = "#{field_name} IS NULL OR #{field_name} = ''" unless regenerate
 
-    conditions = "#{model.token_field_name} IS NULL OR #{model.token_field_name} = ''" unless regenerate
-
-    records_without_token = model.all(conditions: conditions)
+    records_without_token = model.all(conditions: sql_conds)
     if !records_without_token.empty?
       tokenize_records(records_without_token)
     else

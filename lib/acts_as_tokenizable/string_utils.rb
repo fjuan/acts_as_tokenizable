@@ -9,7 +9,8 @@ module ActsAsTokenizable
       false
     end
 
-    # returns an array of strings containing the words on this string. removes spaces, strange chars, etc
+    # returns an array of strings containing the words on this string. Removes
+    # spaces, strange chars, etc
     def self.words(str)
       str.gsub(/[^\w|-]/, ' ').split
     end
@@ -26,7 +27,9 @@ module ActsAsTokenizable
       replaced_words = words(str)
       replacements.each do |candidates, replacement|
         candidates.each do |candidate|
-          replaced_words = replaced_words.collect { |w| w == candidate ? replacement : w }
+          replaced_words = replaced_words.collect do |w|
+            w == candidate ? replacement : w
+          end
         end
       end
       replaced_words.join separator
@@ -46,14 +49,20 @@ module ActsAsTokenizable
     # convert into something that can be used as an indexation key
     def self.to_token(str, max_length = 255)
       # to_slug and normalize are provided by the 'babosa' gem
-      str = str.to_slug.normalize.strip.downcase.gsub(/[^\w|-]/, '') # remove all non-alphanumeric but hyphen (-)
-      str = str.squeeze unless numeric?(str) # remove duplicates, except on pure numbers
+      # remove all non-alphanumeric but hyphen (-)
+      str = str.to_slug.normalize.strip.downcase.gsub(/[^\w|-]/, '')
+      # remove duplicates, except on pure numbers
+      str = str.squeeze unless numeric?(str)
       str[0..(max_length - 1)]
     end
 
-    # tokenizes each word individually, and joins the word with the separator char.
+    # tokenizes each word individually and joins the word with the separator
     def self.words_to_token(str, max_length = 255, separator = ' ')
-      words(str).collect { |w| to_token(w) }.uniq.join(separator)[0..(max_length - 1)]
+      words(str)
+        .collect { |w| to_token(w) }
+        .uniq
+        .join(separator)
+        .slice(0, max_length)
     end
   end
 end
