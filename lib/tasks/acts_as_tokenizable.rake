@@ -1,11 +1,11 @@
 namespace :tokens do
   desc 'Generates the token for objects without tokens.'
-  task :generate => :environment do
+  task generate: :environment do
     tokenize_models
   end
 
   desc 'Re-builds the token for all objects.'
-  task :regenerate => :environment do
+  task regenerate: :environment do
     tokenize_models(true)
   end
 end
@@ -39,7 +39,7 @@ def tokenize_models(regenerate = false)
 
     conditions = "#{model.token_field_name} IS NULL OR #{model.token_field_name} = ''" unless regenerate
 
-    records_without_token = model.all(:conditions => conditions)
+    records_without_token = model.all(conditions: conditions)
     if !records_without_token.empty?
       tokenize_records(records_without_token)
     else
