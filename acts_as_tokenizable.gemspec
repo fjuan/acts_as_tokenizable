@@ -4,20 +4,20 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'acts_as_tokenizable/version'
 
 Gem::Specification.new do |gem|
-  gem.authors          = ['Enrique Garcia Cota', 'Francisco Juan']
-  gem.email            = 'francisco.juan@gmail.com'
-  gem.description      = 'Make ActiveRecord models easily searchable via tokens.'
-  gem.summary          = 'Acts as tokenizable'
-  gem.homepage         = 'https://github.com/fjuan/acts_as_tokenizable'
-  gem.license          = 'MIT'
+  gem.authors = ['Enrique Garcia Cota', 'Francisco Juan']
+  gem.email = 'francisco.juan@gmail.com'
+  gem.description = 'Make ActiveRecord models easily searchable via tokens.'
+  gem.summary = 'Acts as tokenizable'
+  gem.homepage = 'https://github.com/fjuan/acts_as_tokenizable'
+  gem.license = 'MIT'
   gem.extra_rdoc_files = ['README']
 
-  gem.files            = %x{git ls-files}.split($OUTPUT_RECORD_SEPARATOR)
-  gem.executables      = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
-  gem.test_files       = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name             = 'acts_as_tokenizable'
-  gem.require_paths    = ['lib']
-  gem.version          = ActsAsTokenizable::VERSION
+  gem.files = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
+  gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
+  gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
+  gem.name = 'acts_as_tokenizable'
+  gem.require_paths = ['lib']
+  gem.version = ActsAsTokenizable::VERSION
 
   gem.add_runtime_dependency 'activerecord', '4.0.0'
   gem.add_runtime_dependency 'babosa', '~> 0.3.7'
