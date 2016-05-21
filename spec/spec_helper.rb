@@ -1,5 +1,4 @@
-require 'simplecov'
-SimpleCov.minimum_coverage 95
-SimpleCov.start
+require 'codeclimate-test-reporter'
+CodeClimate::TestReporter.start
 
 require 'acts_as_tokenizable'
