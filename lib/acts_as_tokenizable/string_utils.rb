@@ -50,7 +50,7 @@ module ActsAsTokenizable
     def self.to_token(str, max_length = 255)
       # to_slug and normalize are provided by the 'babosa' gem
       # remove all non-alphanumeric but hyphen (-)
-      str = str.to_slug.normalize.strip.downcase.gsub(/[^\w|-]/, '')
+      str = str.to_slug.normalize.strip.downcase.gsub(/[\s|\.|,]+/, '')
       # remove duplicates, except on pure numbers
       str = str.squeeze unless numeric?(str)
       str[0..(max_length - 1)]

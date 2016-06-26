@@ -9,7 +9,8 @@ class Friend < ActiveRecord::Base
   acts_as_tokenizable :token
 
   def to_token
-    ActsAsTokenizable::StringUtils.words_to_token(name)
+    string_to_token = [name, age].join(' ')
+    ActsAsTokenizable::StringUtils.words_to_token(string_to_token)
   end
 end
 

@@ -51,14 +51,14 @@ module ActsAsTokenizable
       scope :tokenized_by, lambda { |search_token|
         search_strings = []
         search_values = []
-        StringUtils.words(prepare_search_token(search_token)).each do |w|
+        StringUtils.words(search_token).each do |w|
           if w[0, 1] == '-'
             search_strings.push("#{table_name}.#{token_field_name} NOT LIKE ?")
-            search_values.push("%#{w[1, w.length]}%")
           else
             search_strings.push("#{table_name}.#{token_field_name} LIKE ?")
-            search_values.push("%#{w}%")
           end
+          tokenized_word = StringUtils.to_token(w)
+          search_values.push("%#{tokenized_word}%")
         end
         where([search_strings.join(' AND '), *search_values])
       }
