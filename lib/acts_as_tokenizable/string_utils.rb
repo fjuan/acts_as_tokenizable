@@ -12,7 +12,7 @@ module ActsAsTokenizable
     # returns an array of strings containing the words on this string. Removes
     # spaces, strange chars, etc
     def self.words(str)
-      str.gsub(/[^\w|-]/, ' ').split
+      str.split(/[\s|\.|,]+/)
     end
 
     # removes certain words from a string.
