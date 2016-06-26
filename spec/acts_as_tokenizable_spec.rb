@@ -1,7 +1,9 @@
 require 'spec_helper'
+require 'support_helper'
 
 describe ActiveRecord do
   it 'does stuff' do
-    pending # no code yet
+    friend = Friend.create name: 'John', email: 'john@example.com'
+    expect(friend.token).to eq('john')
   end
 end
