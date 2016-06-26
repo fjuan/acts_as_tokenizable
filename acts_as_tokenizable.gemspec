@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
   gem.version = ActsAsTokenizable::VERSION
 
   gem.add_runtime_dependency 'activerecord', '4.0.0'
-  gem.add_runtime_dependency 'babosa', '~> 0.3.7'
+  gem.add_runtime_dependency 'babosa'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
