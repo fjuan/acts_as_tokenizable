@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary = 'Acts as tokenizable'
   gem.homepage = 'https://github.com/fjuan/acts_as_tokenizable'
   gem.license = 'MIT'
-  gem.extra_rdoc_files = ['README']
+  gem.extra_rdoc_files = ['README.rdoc']
 
   gem.files = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
   gem.executables = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
