@@ -1,6 +1,10 @@
 class Pet < ActiveRecord::Base
 end
 
+class Enemy < ActiveRecord::Base
+  acts_as_tokenizable :token
+end
+
 class Friend < ActiveRecord::Base
   acts_as_tokenizable :token
 
