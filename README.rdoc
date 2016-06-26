@@ -2,10 +2,10 @@
 
 Add this gem to enable a simple analizer on fields suitable for searching.
 
-{<img src="https://travis-ci.org/fjuan/acts_as_tokenizable.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/fjuan/acts_as_tokenizable]
+{<img src="https://travis-ci.org/fjuan/acts_as_tokenizable.svg" alt="Build Status" />}[https://travis-ci.org/fjuan/acts_as_tokenizable]
 {<img src="https://codeclimate.com/github/fjuan/acts_as_tokenizable/badges/gpa.svg" />}[https://codeclimate.com/github/fjuan/acts_as_tokenizable]
 {<img src="https://gemnasium.com/badges/github.com/fjuan/acts_as_tokenizable.svg" alt="Dependency Status" />}[https://gemnasium.com/github.com/fjuan/acts_as_tokenizable]
-{<img src="https://coveralls.io/repos/github/fjuan/acts_as_tokenizable/badge.svg?branch=master" alt="Coverage Status" />}[https://coveralls.io/github/fjuan/acts_as_tokenizable?branch=master]
+{<img src="https://coveralls.io/repos/github/fjuan/acts_as_tokenizable/badge.svg" alt="Coverage Status" />}[https://coveralls.io/github/fjuan/acts_as_tokenizable]
 
 == Note on Patches/Pull Requests
 
