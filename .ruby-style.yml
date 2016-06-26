@@ -1,3 +1,7 @@
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
+Style/DotPosition:
+  Enabled: true
+  EnforcedStyle: leading
+
