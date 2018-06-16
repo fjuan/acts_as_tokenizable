@@ -2,6 +2,7 @@ require 'babosa' # make sure that babosa is loaded
 
 module ActsAsTokenizable
   module StringUtils
+    SPLIT_CHARACTERES = /[\s|\.]+/
     # returns true if numeric, false, otherwise
     def self.numeric?(str)
       true if Float(str)
@@ -12,7 +13,7 @@ module ActsAsTokenizable
     # returns an array of strings containing the words on this string. Removes
     # spaces, strange chars, etc
     def self.words(str)
-      str.split(/[\s|\.|,]+/)
+      str.split(SPLIT_CHARACTERES)
     end
 
     # removes certain words from a string.
@@ -50,7 +51,7 @@ module ActsAsTokenizable
     def self.to_token(str, max_length = 255)
       # to_slug and normalize are provided by the 'babosa' gem
       # remove all non-alphanumeric but hyphen (-)
-      str = str.to_slug.normalize.strip.downcase.gsub(/[\s|\.|,]+/, '')
+      str = str.to_slug.normalize.strip.downcase.gsub(SPLIT_CHARACTERES, '')
       # remove duplicates, except on pure numbers
       str = str.squeeze unless numeric?(str)
       str[0..(max_length - 1)]
